@@ -1,0 +1,1787 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-redux-form/redux-form/lib/reducer.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-redux-form">npmtest-redux-form (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-redux-form/redux-form/lib/reducer.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">9.58% <small>(30 / 313)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">2.55% <small>(4 / 157)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">9.26% <small>(5 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.67% <small>(26 / 300)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-redux-form/redux-form/lib/</a> &#187; reducer.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+&nbsp;
+var _actionTypes = require('./actionTypes');
+&nbsp;
+var _deleteInWithCleanUp = require('./deleteInWithCleanUp');
+&nbsp;
+var _deleteInWithCleanUp2 = _interopRequireDefault(_deleteInWithCleanUp);
+&nbsp;
+var _plain = require('./structure/plain');
+&nbsp;
+var _plain2 = _interopRequireDefault(_plain);
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : <span class="branch-1 cbranch-no" title="branch not covered" >{ default: obj };</span> }
+&nbsp;
+function _defineProperty(obj, key, value) { <span class="missing-if-branch" title="if path not taken" >I</span>if (key in obj) { <span class="cstat-no" title="statement not covered" >Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); </span>} else { obj[key] = value; } return obj; }
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _objectWithoutProperties(obj, keys) {</span> <span class="cstat-no" title="statement not covered" >var target = {}; <span class="cstat-no" title="statement not covered" ></span>for (var i in obj) { <span class="cstat-no" title="statement not covered" >if (keys.indexOf(i) &gt;= 0) <span class="cstat-no" title="statement not covered" >continue; <span class="cstat-no" title="statement not covered" ></span></span>if (!Object.prototype.hasOwnProperty.call(obj, i)) <span class="cstat-no" title="statement not covered" >continue; <span class="cstat-no" title="statement not covered" ></span></span>target[i] = obj[i]; </span>} <span class="cstat-no" title="statement not covered" ></span>return target; </span>}
+&nbsp;
+var createReducer = function createReducer(structure) {
+  var _behaviors;
+&nbsp;
+  var deepEqual = structure.deepEqual,
+      empty = structure.empty,
+      getIn = structure.getIn,
+      setIn = structure.setIn,
+      deleteIn = structure.deleteIn,
+      fromJS = structure.fromJS,
+      keys = structure.keys,
+      size = structure.size,
+      splice = structure.splice;
+&nbsp;
+  var deleteInWithCleanUp = (0, _deleteInWithCleanUp2.default)(structure);
+  var doSplice = <span class="fstat-no" title="function not covered" >function doSplice(state, key, field, index, removeNum, value, force) {</span>
+<span class="cstat-no" title="statement not covered" >    var existing = getIn(state, key + '.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    return existing || force ? setIn(state, key + '.' + field, splice(existing, index, removeNum, value)) : state;</span>
+  };
+  var doPlainSplice = <span class="fstat-no" title="function not covered" >function doPlainSplice(state, key, field, index, removeNum, value, force) {</span>
+<span class="cstat-no" title="statement not covered" >    var slice = getIn(state, key);</span>
+<span class="cstat-no" title="statement not covered" >    var existing = _plain2.default.getIn(slice, field);</span>
+<span class="cstat-no" title="statement not covered" >    return existing || force ? setIn(state, key, _plain2.default.setIn(slice, field, _plain2.default.splice(existing, index, removeNum, value))) : state;</span>
+  };
+  var rootKeys = ['values', 'fields', 'submitErrors', 'asyncErrors'];
+  var arraySplice = <span class="fstat-no" title="function not covered" >function arraySplice(state, field, index, removeNum, value) {</span>
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    var nonValuesValue = value != null ? empty : undefined;</span>
+<span class="cstat-no" title="statement not covered" >    result = doSplice(result, 'values', field, index, removeNum, value, true);</span>
+<span class="cstat-no" title="statement not covered" >    result = doSplice(result, 'fields', field, index, removeNum, nonValuesValue);</span>
+<span class="cstat-no" title="statement not covered" >    result = doPlainSplice(result, 'syncErrors', field, index, removeNum, undefined);</span>
+<span class="cstat-no" title="statement not covered" >    result = doPlainSplice(result, 'syncWarnings', field, index, removeNum, undefined);</span>
+<span class="cstat-no" title="statement not covered" >    result = doSplice(result, 'submitErrors', field, index, removeNum, undefined);</span>
+<span class="cstat-no" title="statement not covered" >    result = doSplice(result, 'asyncErrors', field, index, removeNum, undefined);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  };
+&nbsp;
+  var behaviors = (_behaviors = {}, _defineProperty(_behaviors, _actionTypes.ARRAY_INSERT, <span class="fstat-no" title="function not covered" >function (state, _ref) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref$meta = _ref.meta,</span>
+        field = _ref$meta.field,
+        index = _ref$meta.index,
+        payload = _ref.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return arraySplice(state, field, index, 0, payload);</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_MOVE, <span class="fstat-no" title="function not covered" >function (state, _ref2) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref2$meta = _ref2.meta,</span>
+        field = _ref2$meta.field,
+        from = _ref2$meta.from,
+        to = _ref2$meta.to;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var array = getIn(state, 'values.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    var length = array ? size(array) : 0;</span>
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    if (length) {</span>
+<span class="cstat-no" title="statement not covered" >      rootKeys.forEach(<span class="fstat-no" title="function not covered" >function (key) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var path = key + '.' + field;</span>
+<span class="cstat-no" title="statement not covered" >        if (getIn(result, path)) {</span>
+<span class="cstat-no" title="statement not covered" >          var value = getIn(result, path + '[' + from + ']');</span>
+<span class="cstat-no" title="statement not covered" >          result = setIn(result, path, splice(getIn(result, path), from, 1)); </span>// remove
+<span class="cstat-no" title="statement not covered" >          result = setIn(result, path, splice(getIn(result, path), to, 0, value)); </span>// insert
+        }
+      });
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_POP, <span class="fstat-no" title="function not covered" >function (state, _ref3) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref3.meta.field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var array = getIn(state, 'values.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    var length = array ? size(array) : 0;</span>
+<span class="cstat-no" title="statement not covered" >    return length ? arraySplice(state, field, length - 1, 1) : state;</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_PUSH, <span class="fstat-no" title="function not covered" >function (state, _ref4) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref4.meta.field,</span>
+        payload = _ref4.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var array = getIn(state, 'values.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    var length = array ? size(array) : 0;</span>
+<span class="cstat-no" title="statement not covered" >    return arraySplice(state, field, length, 0, payload);</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_REMOVE, <span class="fstat-no" title="function not covered" >function (state, _ref5) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref5$meta = _ref5.meta,</span>
+        field = _ref5$meta.field,
+        index = _ref5$meta.index;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return arraySplice(state, field, index, 1);</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_REMOVE_ALL, <span class="fstat-no" title="function not covered" >function (state, _ref6) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref6.meta.field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var array = getIn(state, 'values.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    var length = array ? size(array) : 0;</span>
+<span class="cstat-no" title="statement not covered" >    return length ? arraySplice(state, field, 0, length) : state;</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_SHIFT, <span class="fstat-no" title="function not covered" >function (state, _ref7) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref7.meta.field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return arraySplice(state, field, 0, 1);</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_SPLICE, <span class="fstat-no" title="function not covered" >function (state, _ref8) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref8$meta = _ref8.meta,</span>
+        field = _ref8$meta.field,
+        index = _ref8$meta.index,
+        removeNum = _ref8$meta.removeNum,
+        payload = _ref8.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return arraySplice(state, field, index, removeNum, payload);</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_SWAP, <span class="fstat-no" title="function not covered" >function (state, _ref9) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref9$meta = _ref9.meta,</span>
+        field = _ref9$meta.field,
+        indexA = _ref9$meta.indexA,
+        indexB = _ref9$meta.indexB;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    rootKeys.forEach(<span class="fstat-no" title="function not covered" >function (key) {</span></span>
+<span class="cstat-no" title="statement not covered" >      var valueA = getIn(result, key + '.' + field + '[' + indexA + ']');</span>
+<span class="cstat-no" title="statement not covered" >      var valueB = getIn(result, key + '.' + field + '[' + indexB + ']');</span>
+<span class="cstat-no" title="statement not covered" >      if (valueA !== undefined || valueB !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        result = setIn(result, key + '.' + field + '[' + indexA + ']', valueB);</span>
+<span class="cstat-no" title="statement not covered" >        result = setIn(result, key + '.' + field + '[' + indexB + ']', valueA);</span>
+      }
+    });
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.ARRAY_UNSHIFT, <span class="fstat-no" title="function not covered" >function (state, _ref10) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref10.meta.field,</span>
+        payload = _ref10.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return arraySplice(state, field, 0, 0, payload);</span>
+  }), _defineProperty(_behaviors, _actionTypes.AUTOFILL, <span class="fstat-no" title="function not covered" >function (state, _ref11) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref11.meta.field,</span>
+        payload = _ref11.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteInWithCleanUp(result, 'asyncErrors.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteInWithCleanUp(result, 'submitErrors.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'fields.' + field + '.autofilled', true);</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'values.' + field, payload);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.BLUR, <span class="fstat-no" title="function not covered" >function (state, _ref12) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref12$meta = _ref12.meta,</span>
+        field = _ref12$meta.field,
+        touch = _ref12$meta.touch,
+        payload = _ref12.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    var initial = getIn(result, 'initial.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    if (initial === undefined &amp;&amp; payload === '') {</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteInWithCleanUp(result, 'values.' + field);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (payload !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'values.' + field, payload);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (field === getIn(result, 'active')) {</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'active');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'fields.' + field + '.active');</span>
+<span class="cstat-no" title="statement not covered" >    if (touch) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'fields.' + field + '.touched', true);</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'anyTouched', true);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.CHANGE, <span class="fstat-no" title="function not covered" >function (state, _ref13) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref13$meta = _ref13.meta,</span>
+        field = _ref13$meta.field,
+        touch = _ref13$meta.touch,
+        persistentSubmitErrors = _ref13$meta.persistentSubmitErrors,
+        payload = _ref13.payload;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    var initial = getIn(result, 'initial.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    if (initial === undefined &amp;&amp; payload === '') {</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteInWithCleanUp(result, 'values.' + field);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (payload !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'values.' + field, payload);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    result = deleteInWithCleanUp(result, 'asyncErrors.' + field);</span>
+<span class="cstat-no" title="statement not covered" >    if (!persistentSubmitErrors) {</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteInWithCleanUp(result, 'submitErrors.' + field);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    result = deleteInWithCleanUp(result, 'fields.' + field + '.autofilled');</span>
+<span class="cstat-no" title="statement not covered" >    if (touch) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'fields.' + field + '.touched', true);</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'anyTouched', true);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.CLEAR_SUBMIT, <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >    return deleteIn(state, 'triggerSubmit');</span>
+  }), _defineProperty(_behaviors, _actionTypes.CLEAR_SUBMIT_ERRORS, <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >    return deleteInWithCleanUp(state, 'submitErrors');</span>
+  }), _defineProperty(_behaviors, _actionTypes.CLEAR_ASYNC_ERROR, <span class="fstat-no" title="function not covered" >function (state, _ref14) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref14.meta.field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return deleteIn(state, 'asyncErrors.' + field);</span>
+  }), _defineProperty(_behaviors, _actionTypes.FOCUS, <span class="fstat-no" title="function not covered" >function (state, _ref15) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref15.meta.field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    var previouslyActive = getIn(state, 'active');</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'fields.' + previouslyActive + '.active');</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'fields.' + field + '.visited', true);</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'fields.' + field + '.active', true);</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'active', field);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.INITIALIZE, <span class="fstat-no" title="function not covered" >function (state, _ref16) {</span>
+<span class="cstat-no" title="statement not covered" >    var payload = _ref16.payload,</span>
+        _ref16$meta = _ref16.meta,
+        keepDirty = _ref16$meta.keepDirty,
+        keepSubmitSucceeded = _ref16$meta.keepSubmitSucceeded;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var mapData = fromJS(payload);</span>
+<span class="cstat-no" title="statement not covered" >    var result = empty; </span>// clean all field state
+&nbsp;
+    // persist old warnings, they will get recalculated if the new form values are different from the old values
+<span class="cstat-no" title="statement not covered" >    var warning = getIn(state, 'warning');</span>
+<span class="cstat-no" title="statement not covered" >    if (warning) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'warning', warning);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var syncWarnings = getIn(state, 'syncWarnings');</span>
+<span class="cstat-no" title="statement not covered" >    if (syncWarnings) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'syncWarnings', syncWarnings);</span>
+    }
+&nbsp;
+    // persist old errors, they will get recalculated if the new form values are different from the old values
+<span class="cstat-no" title="statement not covered" >    var error = getIn(state, 'error');</span>
+<span class="cstat-no" title="statement not covered" >    if (error) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'error', error);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var syncErrors = getIn(state, 'syncErrors');</span>
+<span class="cstat-no" title="statement not covered" >    if (syncErrors) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'syncErrors', syncErrors);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var registeredFields = getIn(state, 'registeredFields');</span>
+<span class="cstat-no" title="statement not covered" >    if (registeredFields) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'registeredFields', registeredFields);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var newValues = mapData;</span>
+<span class="cstat-no" title="statement not covered" >    if (keepDirty &amp;&amp; registeredFields) {</span>
+      //
+      // Keep the value of dirty fields while updating the value of
+      // pristine fields. This way, apps can reinitialize forms while
+      // avoiding stomping on user edits.
+      //
+      // Note 1: The initialize action replaces all initial values
+      // regardless of keepDirty.
+      //
+      // Note 2: When a field is dirty, keepDirty is enabled, and the field
+      // value is the same as the new initial value for the field, the
+      // initialize action causes the field to become pristine. That effect
+      // is what we want.
+      //
+<span class="cstat-no" title="statement not covered" >      var previousValues = getIn(state, 'values');</span>
+<span class="cstat-no" title="statement not covered" >      var previousInitialValues = getIn(state, 'initial');</span>
+<span class="cstat-no" title="statement not covered" >      keys(registeredFields).forEach(<span class="fstat-no" title="function not covered" >function (name) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var previousInitialValue = getIn(previousInitialValues, name);</span>
+<span class="cstat-no" title="statement not covered" >        var previousValue = getIn(previousValues, name);</span>
+<span class="cstat-no" title="statement not covered" >        if (!deepEqual(previousValue, previousInitialValue)) {</span>
+          // This field was dirty. Restore the dirty value.
+<span class="cstat-no" title="statement not covered" >          newValues = setIn(newValues, name, previousValue);</span>
+        }
+      });
+    }
+<span class="cstat-no" title="statement not covered" >    if (keepSubmitSucceeded &amp;&amp; getIn(state, 'submitSucceeded')) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'submitSucceeded', true);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'values', newValues);</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'initial', mapData);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.REGISTER_FIELD, <span class="fstat-no" title="function not covered" >function (state, _ref17) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref17$payload = _ref17.payload,</span>
+        name = _ref17$payload.name,
+        type = _ref17$payload.type;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var key = 'registeredFields[\'' + name + '\']';</span>
+<span class="cstat-no" title="statement not covered" >    var field = getIn(state, key);</span>
+<span class="cstat-no" title="statement not covered" >    if (field) {</span>
+<span class="cstat-no" title="statement not covered" >      var count = getIn(field, 'count') + 1;</span>
+<span class="cstat-no" title="statement not covered" >      field = setIn(field, 'count', count);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      field = fromJS({ name: name, type: type, count: 1 });</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return setIn(state, key, field);</span>
+  }), _defineProperty(_behaviors, _actionTypes.RESET, <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >    var result = empty;</span>
+<span class="cstat-no" title="statement not covered" >    var registeredFields = getIn(state, 'registeredFields');</span>
+<span class="cstat-no" title="statement not covered" >    if (registeredFields) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'registeredFields', registeredFields);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var values = getIn(state, 'initial');</span>
+<span class="cstat-no" title="statement not covered" >    if (values) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'values', values);</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'initial', values);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.SUBMIT, <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >    return setIn(state, 'triggerSubmit', true);</span>
+  }), _defineProperty(_behaviors, _actionTypes.START_ASYNC_VALIDATION, <span class="fstat-no" title="function not covered" >function (state, _ref18) {</span>
+<span class="cstat-no" title="statement not covered" >    var field = _ref18.meta.field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return setIn(state, 'asyncValidating', field || true);</span>
+  }), _defineProperty(_behaviors, _actionTypes.START_SUBMIT, <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >    return setIn(state, 'submitting', true);</span>
+  }), _defineProperty(_behaviors, _actionTypes.STOP_ASYNC_VALIDATION, <span class="fstat-no" title="function not covered" >function (state, _ref19) {</span>
+<span class="cstat-no" title="statement not covered" >    var payload = _ref19.payload;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'asyncValidating');</span>
+<span class="cstat-no" title="statement not covered" >    if (payload &amp;&amp; Object.keys(payload).length) {</span>
+<span class="cstat-no" title="statement not covered" >      var _error = payload._error,</span>
+          fieldErrors = _objectWithoutProperties(payload, ['_error']);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (_error) {</span>
+<span class="cstat-no" title="statement not covered" >        result = setIn(result, 'error', _error);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (Object.keys(fieldErrors).length) {</span>
+<span class="cstat-no" title="statement not covered" >        result = setIn(result, 'asyncErrors', fromJS(fieldErrors));</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        result = deleteIn(result, 'asyncErrors');</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'error');</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'asyncErrors');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.STOP_SUBMIT, <span class="fstat-no" title="function not covered" >function (state, _ref20) {</span>
+<span class="cstat-no" title="statement not covered" >    var payload = _ref20.payload;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'submitting');</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'submitFailed');</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'submitSucceeded');</span>
+<span class="cstat-no" title="statement not covered" >    if (payload &amp;&amp; Object.keys(payload).length) {</span>
+<span class="cstat-no" title="statement not covered" >      var _error = payload._error,</span>
+          fieldErrors = _objectWithoutProperties(payload, ['_error']);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (_error) {</span>
+<span class="cstat-no" title="statement not covered" >        result = setIn(result, 'error', _error);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        result = deleteIn(result, 'error');</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (Object.keys(fieldErrors).length) {</span>
+<span class="cstat-no" title="statement not covered" >        result = setIn(result, 'submitErrors', fromJS(fieldErrors));</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        result = deleteIn(result, 'submitErrors');</span>
+      }
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'submitFailed', true);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'submitSucceeded', true);</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'error');</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'submitErrors');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.SET_SUBMIT_FAILED, <span class="fstat-no" title="function not covered" >function (state, _ref21) {</span>
+<span class="cstat-no" title="statement not covered" >    var fields = _ref21.meta.fields;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'submitFailed', true);</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'submitSucceeded');</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'submitting');</span>
+<span class="cstat-no" title="statement not covered" >    fields.forEach(<span class="fstat-no" title="function not covered" >function (field) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return result = setIn(result, 'fields.' + field + '.touched', true);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    if (fields.length) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'anyTouched', true);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.SET_SUBMIT_SUCCEEDED, <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    result = deleteIn(result, 'submitFailed');</span>
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'submitSucceeded', true);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.TOUCH, <span class="fstat-no" title="function not covered" >function (state, _ref22) {</span>
+<span class="cstat-no" title="statement not covered" >    var fields = _ref22.meta.fields;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    fields.forEach(<span class="fstat-no" title="function not covered" >function (field) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return result = setIn(result, 'fields.' + field + '.touched', true);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    result = setIn(result, 'anyTouched', true);</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.UNREGISTER_FIELD, <span class="fstat-no" title="function not covered" >function (state, _ref23) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref23$payload = _ref23.payload,</span>
+        name = _ref23$payload.name,
+        destroyOnUnmount = _ref23$payload.destroyOnUnmount;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    var key = 'registeredFields[\'' + name + '\']';</span>
+<span class="cstat-no" title="statement not covered" >    var field = getIn(result, key);</span>
+<span class="cstat-no" title="statement not covered" >    if (!field) {</span>
+<span class="cstat-no" title="statement not covered" >      return result;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var count = getIn(field, 'count') - 1;</span>
+<span class="cstat-no" title="statement not covered" >    if (count &lt;= 0 &amp;&amp; destroyOnUnmount) {</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, key);</span>
+<span class="cstat-no" title="statement not covered" >      if (deepEqual(getIn(result, 'registeredFields'), empty)) {</span>
+<span class="cstat-no" title="statement not covered" >        result = deleteIn(result, 'registeredFields');</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      field = setIn(field, 'count', count);</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, key, field);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.UNTOUCH, <span class="fstat-no" title="function not covered" >function (state, _ref24) {</span>
+<span class="cstat-no" title="statement not covered" >    var fields = _ref24.meta.fields;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    fields.forEach(<span class="fstat-no" title="function not covered" >function (field) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return result = deleteIn(result, 'fields.' + field + '.touched');</span>
+    });
+<span class="cstat-no" title="statement not covered" >    var anyTouched = keys(getIn(result, 'registeredFields')).some(<span class="fstat-no" title="function not covered" >function (key) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return getIn(result, 'fields.' + key + '.touched');</span>
+    });
+<span class="cstat-no" title="statement not covered" >    result = anyTouched ? setIn(result, 'anyTouched', true) : deleteIn(result, 'anyTouched');</span>
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.UPDATE_SYNC_ERRORS, <span class="fstat-no" title="function not covered" >function (state, _ref25) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref25$payload = _ref25.payload,</span>
+        syncErrors = _ref25$payload.syncErrors,
+        error = _ref25$payload.error;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    if (error) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'error', error);</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'syncError', true);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'error');</span>
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'syncError');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (Object.keys(syncErrors).length) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'syncErrors', syncErrors);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'syncErrors');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _defineProperty(_behaviors, _actionTypes.UPDATE_SYNC_WARNINGS, <span class="fstat-no" title="function not covered" >function (state, _ref26) {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref26$payload = _ref26.payload,</span>
+        syncWarnings = _ref26$payload.syncWarnings,
+        warning = _ref26$payload.warning;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var result = state;</span>
+<span class="cstat-no" title="statement not covered" >    if (warning) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'warning', warning);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'warning');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (Object.keys(syncWarnings).length) {</span>
+<span class="cstat-no" title="statement not covered" >      result = setIn(result, 'syncWarnings', syncWarnings);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      result = deleteIn(result, 'syncWarnings');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return result;</span>
+  }), _behaviors);
+&nbsp;
+  var reducer = <span class="fstat-no" title="function not covered" >function reducer() {</span>
+<span class="cstat-no" title="statement not covered" >    var state = arguments.length &gt; 0 &amp;&amp; arguments[0] !== undefined ? arguments[0] : empty;</span>
+<span class="cstat-no" title="statement not covered" >    var action = arguments[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var behavior = behaviors[action.type];</span>
+<span class="cstat-no" title="statement not covered" >    return behavior ? behavior(state, action) : state;</span>
+  };
+&nbsp;
+  var byForm = function byForm(reducer) {
+    return <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var state = arguments.length &gt; 0 &amp;&amp; arguments[0] !== undefined ? arguments[0] : empty;</span>
+<span class="cstat-no" title="statement not covered" >      var action = arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var form = action &amp;&amp; action.meta &amp;&amp; action.meta.form;</span>
+<span class="cstat-no" title="statement not covered" >      if (!form) {</span>
+<span class="cstat-no" title="statement not covered" >        return state;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (action.type === _actionTypes.DESTROY) {</span>
+<span class="cstat-no" title="statement not covered" >        return action.meta.form.reduce(<span class="fstat-no" title="function not covered" >function (result, form) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return deleteInWithCleanUp(result, form);</span>
+        }, state);
+      }
+<span class="cstat-no" title="statement not covered" >      var formState = getIn(state, form);</span>
+<span class="cstat-no" title="statement not covered" >      var result = reducer(formState, action);</span>
+<span class="cstat-no" title="statement not covered" >      return result === formState ? state : setIn(state, form, result);</span>
+    };
+  };
+&nbsp;
+  /**
+   * Adds additional functionality to the reducer
+   */
+  function decorate(target) {
+    target.plugin = <span class="fstat-no" title="function not covered" >function plugin(reducers) {</span>
+<span class="cstat-no" title="statement not covered" >      var _this = this;</span>
+&nbsp;
+      // use 'function' keyword to enable 'this'
+<span class="cstat-no" title="statement not covered" >      return decorate(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        var state = arguments.length &gt; 0 &amp;&amp; arguments[0] !== undefined ? arguments[0] : empty;</span>
+<span class="cstat-no" title="statement not covered" >        var action = arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};</span>
+<span class="cstat-no" title="statement not covered" >        return Object.keys(reducers).reduce(<span class="fstat-no" title="function not covered" >function (accumulator, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >          var previousState = getIn(accumulator, key);</span>
+<span class="cstat-no" title="statement not covered" >          var nextState = reducers[key](previousState, action, getIn(state, key));</span>
+<span class="cstat-no" title="statement not covered" >          return nextState === previousState ? accumulator : setIn(accumulator, key, nextState);</span>
+        }, _this(state, action));
+      });
+    };
+&nbsp;
+    return target;
+  }
+&nbsp;
+  return decorate(byForm(reducer));
+};
+&nbsp;
+exports.default = createReducer;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 19:23:06 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
