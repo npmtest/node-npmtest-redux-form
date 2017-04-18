@@ -1,7 +1,10 @@
-# test coverage for  [redux-form (v6.6.2)](https://redux-form.com/)  [![npm package](https://img.shields.io/npm/v/npmtest-redux-form.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-redux-form) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-redux-form.svg)](https://travis-ci.org/npmtest/node-npmtest-redux-form)
+# npmtest-redux-form
+
+#### test coverage for  [redux-form (v6.6.3)](https://redux-form.com/)  [![npm package](https://img.shields.io/npm/v/npmtest-redux-form.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-redux-form) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-redux-form.svg)](https://travis-ci.org/npmtest/node-npmtest-redux-form)
+
 #### A higher order component decorator for forms using Redux and React
 
-[![NPM](https://nodei.co/npm/redux-form.png?downloads=true)](https://www.npmjs.com/package/redux-form)
+[![NPM](https://nodei.co/npm/redux-form.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/redux-form)
 
 | git-branch : | [alpha](https://github.com/npmtest/node-npmtest-redux-form/tree/alpha)|
 |--:|:--|
@@ -9,11 +12,17 @@
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.html)|
 | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-redux-form/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-redux-form/tree/gh-pages/build)|
 
-[![istanbul-coverage](https://npmtest.github.io/node-npmtest-redux-form/build/screenCapture.buildCustomOrg.browser.coverage.html.png)](https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html)
+- [https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html)
 
-[![test-report](https://npmtest.github.io/node-npmtest-redux-form/build/screenCapture.buildCustomOrg.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmtest%252Fnode-npmtest-redux-form%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.html)
+[![istanbul-coverage](https://npmtest.github.io/node-npmtest-redux-form/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fcoverage.lib.html.png)](https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-redux-form/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-redux-form%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-redux-form/build/apidoc.html)
+- [https://npmtest.github.io/node-npmtest-redux-form/build/test-report.html](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.html)
+
+[![test-report](https://npmtest.github.io/node-npmtest-redux-form/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.html)
+
+- [https://npmdoc.github.io/node-npmdoc-redux-form/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-redux-form/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-redux-form/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-redux-form/build/apidoc.html)
 
 ![npmPackageListing](https://npmtest.github.io/node-npmtest-redux-form/build/screenCapture.npmPackageListing.svg)
 
@@ -28,7 +37,6 @@
 {
     "author": {
         "name": "Erik Rasmussen",
-        "email": "rasmussenerik@gmail.com",
         "url": "http://github.com/erikras"
     },
     "bugs": {
@@ -41,25 +49,26 @@
         "invariant": "^2.2.2",
         "is-promise": "^2.1.0",
         "lodash": "^4.17.3",
-        "lodash-es": "^4.17.3"
+        "lodash-es": "^4.17.3",
+        "prop-types": "^15.5.6"
     },
     "description": "A higher order component decorator for forms using Redux and React",
     "devDependencies": {
-        "babel-cli": "^6.18.0",
-        "babel-core": "^6.21.0",
-        "babel-eslint": "^7.2.1",
+        "babel-cli": "^6.24.1",
+        "babel-core": "^6.24.1",
+        "babel-eslint": "^7.2.2",
         "babel-loader": "^6.2.10",
         "babel-plugin-istanbul": "^4.1.1",
         "babel-plugin-lodash": "^3.2.11",
         "babel-plugin-syntax-async-functions": "^6.13.0",
-        "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-        "babel-plugin-transform-regenerator": "^6.21.0",
+        "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+        "babel-plugin-transform-regenerator": "^6.24.1",
         "babel-preset-es2015-no-commonjs": "^0.0.2",
-        "babel-preset-react": "^6.16.0",
-        "babel-preset-stage-2": "^6.18.0",
-        "babel-register": "^6.18.0",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "babel-register": "^6.24.1",
         "codecov.io": "^0.1.6",
-        "cross-env": "^3.1.3",
+        "cross-env": "^4.0.0",
         "eslint": "^3.17.1",
         "eslint-config-react-app": "^0.6.2",
         "eslint-plugin-flowtype": "^2.30.4",
@@ -75,10 +84,9 @@
         "lodash-webpack-plugin": "^0.11.2",
         "mocha": "^3.2.0",
         "nyc": "^10.2.0",
-        "react": "^15.4.1",
-        "react-addons-test-utils": "^15.4.1",
-        "react-dom": "^15.4.1",
-        "react-redux": "^5.0.1",
+        "react": "^15.5.4",
+        "react-dom": "^15.5.4",
+        "react-redux": "^5.0.4",
         "redux": "^3.6.0",
         "redux-immutablejs": "^0.0.8",
         "rifraf": "^2.0.3",
@@ -89,8 +97,8 @@
     },
     "directories": {},
     "dist": {
-        "shasum": "51102430a38b4d85529290a881bc1efb54f580ae",
-        "tarball": "https://registry.npmjs.org/redux-form/-/redux-form-6.6.2.tgz"
+        "shasum": "62362654f2214c83a8f9fcb8313702bb46f92205",
+        "tarball": "https://registry.npmjs.org/redux-form/-/redux-form-6.6.3.tgz"
     },
     "files": [
         "README.md",
@@ -99,7 +107,7 @@
         "dist",
         "immutable.js"
     ],
-    "gitHead": "14cf2a9f8a3461ff00780f5a5a47b701f1795d96",
+    "gitHead": "38382a4e5db639637ed3740b2168083cd05d1226",
     "homepage": "https://redux-form.com/",
     "jsnext:main": "./es/index.js",
     "keywords": [
@@ -116,8 +124,7 @@
     "main": "./lib/index.js",
     "maintainers": [
         {
-            "name": "erikras",
-            "email": "rasmussenerik@gmail.com"
+            "name": "erikras"
         }
     ],
     "module": "./es/index.js",
@@ -144,7 +151,6 @@
         "react-redux": "^4.3.0 || ^5.0.0",
         "redux": "^3.0.0"
     },
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/erikras/redux-form.git"
@@ -177,7 +183,7 @@
         "test:cov": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm test",
         "test:watch": "npm test -- --watch"
     },
-    "version": "6.6.2"
+    "version": "6.6.3"
 }
 ```
 
