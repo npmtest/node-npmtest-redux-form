@@ -1,6 +1,6 @@
 # npmtest-redux-form
 
-#### test coverage for  [redux-form (v6.6.3)](https://redux-form.com/)  [![npm package](https://img.shields.io/npm/v/npmtest-redux-form.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-redux-form) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-redux-form.svg)](https://travis-ci.org/npmtest/node-npmtest-redux-form)
+#### basic test coverage for  [redux-form (v6.6.3)](https://redux-form.com/)  [![npm package](https://img.shields.io/npm/v/npmtest-redux-form.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-redux-form) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-redux-form.svg)](https://travis-ci.org/npmtest/node-npmtest-redux-form)
 
 #### A higher order component decorator for forms using Redux and React
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-redux-form/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-redux-form/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-redux-form/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-redux-form/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-redux-form/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-redux-form/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-redux-form/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-redux-form/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-redux-form/build/coverage.html/index.html)
 
@@ -183,7 +183,8 @@
         "test:cov": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm test",
         "test:watch": "npm test -- --watch"
     },
-    "version": "6.6.3"
+    "version": "6.6.3",
+    "bin": {}
 }
 ```
 
